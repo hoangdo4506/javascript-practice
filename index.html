@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài thực hành JavaScript</title>
+
+    <style>
+        #image {
+            width: 600px;
+            height: 350px;
+            border: 2px solid black;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .preview {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Di chuột vào ảnh bên dưới</h2>
+
+    <div id="image">
+        Di chuột qua một hình ảnh bên dưới để hiển thị ở đây.
+    </div>
+
+    <img class="preview"
+         src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400"
+         alt="Phong cảnh thiên nhiên"
+         onmouseover="upDate(this)"
+         onmouseout="undo()">
+
+    <img class="preview"
+         src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400"
+         alt="Biển xanh"
+         onmouseover="upDate(this)"
+         onmouseout="undo()">
+
+    <img class="preview"
+         src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400"
+         alt="Núi và hồ"
+         onmouseover="upDate(this)"
+         onmouseout="undo()">
+
+    <script>
+        function upDate(PreviewPic) {
+            console.log("Sự kiện di chuột đã kích hoạt!");
+            console.log("Alt:", PreviewPic.alt);
+            console.log("Source:", PreviewPic.src);
+
+            let image = document.getElementById("image");
+
+            image.innerHTML = PreviewPic.alt;
+            image.style.backgroundImage =
+                "url('" + PreviewPic.src + "')";
+        }
+
+        function undo() {
+            let image = document.getElementById("image");
+
+            image.style.backgroundImage = "url('')";
+            image.innerHTML =
+                "Di chuột qua một hình ảnh bên dưới để hiển thị ở đây.";
+        }
+    </script>
+
+</body>
+</html>
