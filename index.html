@@ -1,81 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bài thực hành JavaScript</title>
-
-    <style>
-        #image {
-            width: 600px;
-            height: 350px;
-            border: 2px solid black;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 22px;
-            margin-bottom: 20px;
-        }
-
-        .preview {
-            width: 150px;
-            height: 100px;
-            object-fit: cover;
-            margin: 5px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thư viện ảnh tương tác</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-<body>
-
-    <h2>Di chuột vào ảnh bên dưới</h2>
-
-    <div id="image">
-        Di chuột qua một hình ảnh bên dưới để hiển thị ở đây.
-    </div>
-
-    <img class="preview"
-         src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400"
-         alt="Phong cảnh thiên nhiên"
-         onmouseover="upDate(this)"
-         onmouseout="undo()">
-
-    <img class="preview"
-         src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400"
-         alt="Biển xanh"
-         onmouseover="upDate(this)"
-         onmouseout="undo()">
-
-    <img class="preview"
-         src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400"
-         alt="Núi và hồ"
-         onmouseover="upDate(this)"
-         onmouseout="undo()">
-
-    <script>
-        function upDate(PreviewPic) {
-            console.log("Sự kiện di chuột đã kích hoạt!");
-            console.log("Alt:", PreviewPic.alt);
-            console.log("Source:", PreviewPic.src);
-
-            let image = document.getElementById("image");
-
-            image.innerHTML = PreviewPic.alt;
-            image.style.backgroundImage =
-                "url('" + PreviewPic.src + "')";
-        }
-
-        function undo() {
-            let image = document.getElementById("image");
-
-            image.style.backgroundImage = "url('')";
-            image.innerHTML =
-                "Di chuột qua một hình ảnh bên dưới để hiển thị ở đây.";
-        }
-    </script>
-
+<body onload="addTabFocus()">
+  <header class="page-header">
+    <h1>Thư viện ảnh tương tác</h1>
+    <p>Di chuyển chuột hoặc nhấn phím Tab để xem từng ảnh.</p>
+  </header>
+  <main class="container">
+    <section class="gallery" aria-label="Thư viện gồm sáu ảnh phong cảnh">
+      <div class="preview" id="image" aria-live="polite">
+        Di chuyển chuột hoặc focus vào một hình ảnh để xem ảnh tại đây.
+      </div>
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&auto=format&fit=crop&q=80" alt="Phong cảnh núi non và thung lũng xanh dưới bầu trời rộng" onmouseover="upDate(this)" onmouseleave="undo()" onfocus="upDate(this)" onblur="undo()">
+        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800&auto=format&fit=crop&q=80" alt="Hồ nước yên bình phản chiếu những ngọn núi" onmouseover="upDate(this)" onmouseleave="undo()" onfocus="upDate(this)" onblur="undo()">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&auto=format&fit=crop&q=80" alt="Ánh nắng xuyên qua khu rừng xanh" onmouseover="upDate(this)" onmouseleave="undo()" onfocus="upDate(this)" onblur="undo()">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&auto=format&fit=crop&q=80" alt="Hồ trên núi với mặt nước trong xanh và rừng cây" onmouseover="upDate(this)" onmouseleave="undo()" onfocus="upDate(this)" onblur="undo()">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&auto=format&fit=crop&q=80" alt="Những đỉnh núi cao nổi bật giữa mây trời" onmouseover="upDate(this)" onmouseleave="undo()" onfocus="upDate(this)" onblur="undo()">
+        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?w=800&auto=format&fit=crop&q=80" alt="Cảnh thiên nhiên rộng lớn với đồng cỏ và núi ở phía xa" onmouseover="upDate(this)" onmouseleave="undo()" onfocus="upDate(this)" onblur="undo()">
+      </div>
+    </section>
+  </main>
+  <footer><p>Thư viện ảnh tương tác — hỗ trợ chuột và bàn phím.</p></footer>
 </body>
 </html>
